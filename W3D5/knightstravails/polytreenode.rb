@@ -47,5 +47,20 @@ class PolyTreeNode
         nil
     end
 
+    def inspect
+        "<node #{self.value}: parent=#{self.parent.value} ; children=#{self.children}"
+    end
+
+    def print
+        puts "Node is #{self.value};"
+        puts "#{self.value}'s Parent is: #{self.parent.nil? ? "nothing" : self.parent.value};"
+        puts "Children are:"
+        self.children.each_with_index do |child, i|
+            puts "index #{i} => #{child.value}"
+        end
+        puts "________________________"
+        nil
+    end
+
 
 end

@@ -8,42 +8,26 @@ class TicTacToeNode
     @board = board
     @next_mover_mark = next_mover_mark
     @prev_move_pos = prev_move_pos
-
-    if @next_mover_mark == :x
-      @current_mark = :o
-    else
-      @current_mark = :x
-    end
-
   end
 
   def losing_node?(evaluator) #evaluator is the mark
-    return true if self.board.over? && self.board.winner != evaluator
-    return false if self.board.over? && (self.board.winner == evaluator || self.board.winner.nil?)
-    if self.current_mark == evaluator
-      self.children.any? do |child|
-        child.losing_node?(evaluator)
-      end
+    return self.board.won? && self.board.winner != evaluator if self.board.over?
+
+    if self.next_mover_mark == evaluator
+      self.children.all? { |node| node.losing_node?(evaluator) }
     else
-      self.children.none? do |child|
-        child.losing_node?(self.next_mover_mark)
-      end
+      self.children.any? { |node| node.losing_node?(evaluator) }
     end
   end
 
   def winning_node?(evaluator)
-    return true if self.board.over? && self.board.winner == evaluator
-    return false if self.board.over? && (self.board.winner != evaluator || self.board.winner.nil?)
-    if self.current_mark == evaluator
-      self.children.any? do |child|
-        child.winning_node?(evaluator)
-      end
+    return self.board.winner == evaluator if self.board.over?
+
+    if self.next_mover_mark == evaluator
+      self.children.any? { |node| node.winning_node?(evaluator) }
     else
-      self.children.none? do |child|
-        child.winning_node?(self.next_mover_mark)
-      end
+      self.children.all? { |node| node.winning_node?(evaluator) }
     end
-    # !self.losing_node?(evaluator)
   end
 
   # This method generates an array of all moves that can be made after
@@ -53,14 +37,13 @@ class TicTacToeNode
     self.board.rows.each_with_index do |row, i|
       row.each_with_index do |ele, j|
         pos = [i, j]
-        next if !@board.empty?(pos)
+        next unless @board.empty?(pos)
         new_board = self.board.dup
         new_board[pos] = self.next_mover_mark
-        next_next_turn = ((@next_mover_mark == :x) ? :o : :x)
-        @children << TicTacToeNode.new(new_board, next_next_turn, pos)
+        @next_mover_mark = ((@next_mover_mark == :x) ? :o : :x)
+        @children << TicTacToeNode.new(new_board, @next_mover_mark, pos)
       end
     end
-    @next_mover_mark = ((@next_mover_mark == :x) ? :o : :x)
     @children
   end
 end

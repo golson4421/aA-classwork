@@ -15,14 +15,12 @@ class Piece
     end
 
     def valid_moves
-        [[4,4]]
     end
 
     def pos=(val)
     end
 
     def symbol
-        ""
     end
 
     private
