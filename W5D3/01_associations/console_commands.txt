@@ -1,0 +1,7 @@
+Enrollment.first.user
+Enrollment.first.course
+User.first.enrollments
+User.first.enrolled_courses
+Course.first.enrolled_students
+Course.last.prerequisite
+Course.first.instructor
