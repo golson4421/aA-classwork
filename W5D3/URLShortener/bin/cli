@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+puts "What is your email?"
+print ">"
+email = gets.chomp
+user = User.find_by(email: email)
+
+puts "What would you like to do?"
+puts "--To visit a Shortened URL, enter 1"
+puts "--To create a Shortened URL, enter 2"
+print ">"
+case gets.chomp.to_i
+when 1
+    puts "These are the URLS available:"
+    puts "ID |Long URL                 |Short URL"
+    puts "-------------------------------------------------"
+    ShortenedUrl.order(:id).each do |url_obj|
+        puts "#{url_obj.id.to_s.ljust(2)} |#{url_obj.long_url.ljust(25)}|#{url_obj.short_url}"
+    end
+    puts "Enter your selection"
+    print ">"
+    Visit.create!(user.id, gets.chomp.to_i)
+    # ...
+when 2
+    puts "Enter the URL you'd like to shorten"
+    print ">"
+    long_url = gets.chomp
+    ShortenedUrl.create_new(user, long_url)
+    puts "Your shortened URL is: #{ShortenedUrl.last.short_url}"
+    # ...
+end
+    
