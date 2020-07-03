@@ -1,0 +1,26 @@
+/* PUT FLUID GRID CODE HERE */
+
+
+.col {
+float : left;
+padding: 10px;
+box-sizing: border-box; 
+/* not 100 on what the border-box does  */
+}
+
+.col-1-3 {
+ width:33.3%;
+}
+
+.col-2-3 {
+    width: 66.7%;
+}
+
+/* looks fine to me! */
+/* did these styles apply to the page or do we still need to add the classes to the elements? */
+/* I did add the classes to the html, they  both have class="col" */
+/* not sure if that's right */
+
+/* i think left one needs class= "col col-1-3" and the other needs "col  col-2-3" they'll end up stacking up on each other. */
+/* That does work now! */
+/* nice */
