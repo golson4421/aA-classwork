@@ -1,0 +1,37 @@
+<h1>CAT SHOW PAGE</h1>
+<%# html snippet worth it! %>
+<%# pe + tab = returning erb %>
+<%# er + tab = non returning erb %>
+
+<% cat = @cat %>
+<ul>
+  <li><%= cat.birthdate %></li>
+  <li><%= cat.color %></li>
+  <li><%= cat.name %></li>
+  <li><%= cat.sex %></li>
+  <li><%= cat.description %></li>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="5"><%= cat.name.capitalize %> Information</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Birthday</td>
+            <td>Color</td>
+            <td>Name</td>
+            <td>Sex</td>
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td><%= cat.birthdate %></td>
+            <td><%= cat.color %></td>
+            <td><%= cat.name %></td>
+            <td><%= cat.sex %></td>
+            <td><%= cat.description %></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,19 @@
+<h1>CATS INDEX</h1>
+
+<ul>
+  <% @cats.each do |cat| %>
+    <li>
+      <ul>
+        <li><%= cat.birthdate %></li>
+        <li><%= cat.color %></li>
+        <li><%= cat.name %></li>
+        <li><%= cat.sex %></li>
+        <li><%= cat.description %></li>
+      </ul>
+      <%#= render 'cat', cat: cat, action: :index %>
+      <%# 'user' == name of partial %>
+      <%# dark blue banana symbol == setting key of banana for our partial to access%>
+      <%# light blue user (value) is from user in pipes of iteration %>
+    </li>
+  <% end %>
+</ul>

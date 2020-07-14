@@ -1,0 +1,38 @@
+<h1>NEW CAT FORM VIEW</h1>
+
+<form action="<%= cats_url %>" method="POST">
+  <%# the action should be where we want to GO (send the info from the form) %>
+  <%# to the CREATE action! %>
+
+  <label for="name">name: </label>
+  <input type="text" id="name" name="cat[name]" value="<%= @cat.name %>">
+  <%# if label and input are independent, need the **for / id** to match %>
+  <br>
+  
+  <label for="sex:">gender: </label>
+    <input type="radio" id="sex" name="cat[sex]" value="<%= @cat.sex %>">
+    <label for="Male">Male</label>
+    <input type="radio" id="sex" name="cat[sex]" value="<%= @cat.sex %>">
+    <label for="Female">Female</label>
+
+  <br>
+  <label for="color:">color: </label>
+  <select name="color:" id="colors">
+    <option selected disabled>-- select a color --</option>
+    <% Cat::COLORS.each do |color| %>
+      <option value=<%@cat.color%>><%=color%></option>
+    <% end %>
+  </select>
+
+  <br>
+  <label for="birthdate">birthdate: </label>
+  <input type="date" id="birthdate" name="cat[birthdate]" value="<%= @cat.birthdate %>">
+
+  <br>
+  <label for="description">description: </label>
+  <input type="textarea" id="description" name="cat[description]" value="<%= @cat.description %>">
+  <br>
+  <input type="submit" value="Create Cat">
+  <%# input with type submit makes a button %>
+</form>
+
